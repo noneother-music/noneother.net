@@ -1,0 +1,21 @@
+@use './styles/layout' as l;
+
+.media {
+  display: flex;
+  justify-content: center;
+
+  @include l.margin(1, 0, 2);
+}
+
+.media-youtube {
+  // Display at 16:9 resolution
+  position:relative;
+  padding-bottom: 56.25%;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,39 @@
+@use "sass:map";
+
+// Maps ----------------------------------------------------------------------------------------------------------------
+@function maphas($map, $key) {
+  @return map.has-key($map, $key);
+}
+
+@function mapget($map, $key, $default: null) {
+  @return if(sass(maphas($map, $key)): map.get($map, $key); else: $default);
+}
+
+@function mapset($map, $key, $val) {
+  @return map.set($map, $key, $val);
+}
+
+// Unit conversions ----------------------------------------------------------------------------------------------------
+@function px-per-rem() {
+  @return 14px;
+}
+
+@function rem-to-px($val) {
+  @return ($val / 1rem) * px-per-rem();
+}
+
+@function px-to-rem($val) {
+  @return ($val / px-per-rem()) * 1rem;
+}
+
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.clearfix {
+  @include clearfix;
+}

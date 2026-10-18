@@ -1,0 +1,5 @@
+@use './layout' as l;
+
+.page {
+  padding: 4*l.$spacing-unit l.$spacing-unit;
+}

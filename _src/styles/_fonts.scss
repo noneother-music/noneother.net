@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Glitch";
+  src: url("/assets/fonts/glitch-goblin.regular.otf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin display-font {
+  font-family: "Glitch", sans-serif;
+  @content;
+}
+
+@mixin mono-font {
+  font-family: "Monoid", monospace;
+  @content;
+}
+
+@mixin sans-font {
+  font-family: "Roboto", sans-serif;
+  @content;
+}

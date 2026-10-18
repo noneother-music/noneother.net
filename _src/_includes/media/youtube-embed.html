@@ -1,0 +1,11 @@
+{%- assign media_class = include.class | default: "" | prepend: "media media-youtube" -%}
+
+<div class="{{ media_class }}">
+<iframe src="https://www.youtube.com/embed/{{ video_id }}"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen>
+</iframe>
+</div>

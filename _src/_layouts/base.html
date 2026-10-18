@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | noneother.net</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <script defer src="/script.js"></script>
+  </head>
+  <body class="site">
+    <header class="site__header">
+      {% include "site-header.html"  %}
+    </header>
+    <main class="site__content">
+      {{ content }}
+    </main>
+    <footer class="site__footer">
+      {% include "site-footer.html"  %}
+    </footer>
+  </body>
+</html>

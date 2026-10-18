@@ -1,0 +1,27 @@
+@use 'layout' as l;
+
+.portfolio-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: clamp(300px, 50vw, 60rem);
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    margin-bottom: 10rem;
+    list-style: none;
+  }
+
+  &__entry {
+    margin-top: clamp(1rem, 10vw, 10rem);
+  }
+
+  &__entry > a {
+    display: flex;
+    flex-direction: column;
+  }
+}

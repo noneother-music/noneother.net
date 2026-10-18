@@ -1,0 +1,155 @@
+@use 'colours' as c;
+@use 'utilities' as u;
+@use 'fonts' as f;
+@use 'layout' as l;
+
+@forward 'fonts';
+
+@function font-size($step) {
+  $sizes: (
+    tiny:    -2,
+    small:   -1,
+    copy:     0,
+    big:      1,
+    bigger:   4,
+    biggest:  6,
+  );
+
+  $size: u.mapget($sizes, $step, $step);
+
+  @return l.ms($size, l.$base-font-size);
+}
+
+@function font-weight($weight) {
+  $font-weights: (
+    thin:    100,
+    light:   300,
+    regular: 400,
+    medium:  500,
+    bold:    700,
+    heavy:   900,
+    black:   900,
+  );
+  @return u.mapget($font-weights, $weight, $weight);
+}
+
+@mixin copy-text {
+  @include f.sans-font;
+  font-size: var(--fs-copy);
+  font-style: normal;
+  font-weight: font-weight(regular);
+  line-height: var(--lh-copy);
+  @content;
+}
+
+@mixin heading-text {
+  @include f.display-font;
+  font-style: italic;
+  @content;
+}
+
+@mixin title-text {
+  @include heading-text;
+  font-size: var(--fs-biggest);
+  font-weight: font-weight(heavy);
+  text-transform: uppercase;
+  @content;
+}
+
+@mixin small-text {
+  @include copy-text;
+  font-size: var(--fs-small);
+}
+
+@mixin tiny-text {
+  @include copy-text;
+  font-size: var(--fs-tiny);
+}
+
+:root {
+  --fs1:        #{ font-size(1)       };
+  --fs2:        #{ font-size(2)       };
+  --fs3:        #{ font-size(3)       };
+  --fs4:        #{ font-size(4)       };
+  --fs5:        #{ font-size(5)       };
+  --fs6:        #{ font-size(6)       };
+  --fs-tiny:    #{ font-size(tiny)    };
+  --fs-small:   #{ font-size(small)   };
+  --fs-copy:    #{ font-size(copy)    };
+  --fs-big:     #{ font-size(big)     };
+  --fs-bigger:  #{ font-size(bigger)  };
+  --fs-biggest: #{ font-size(biggest) };
+
+  --lh1:        #{ line-height(1)     };
+  --lh2:        #{ line-height(1.125) };
+  --lh3:        #{ line-height(1.5)   };
+  --lh4:        #{ line-height(2)     };
+  --lh5:        #{ line-height(2)     };
+  --lh6:        #{ line-height(2)     };
+
+  --lh-tiny:    var(--lh1);
+  --lh-small:   var(--lh2);
+  --lh-copy:    var(--lh3);
+  --lh-big:     var(--lh4);
+  --lh-bigger:  var(--lh5);
+  --lh-biggest: var(--lh6);
+}
+
+.title-text {
+  @include title-text;
+}
+
+.small-text {
+  @include small-text;
+}
+
+.tiny-text {
+  @include tiny-text;
+}
+
+a {
+  color: c.$highlight;
+}
+
+body {
+  @include small-text;
+}
+
+h1 {
+  font-size: var(--fs-biggest);
+}
+h2 {
+  font-size: var(--fs-bigger);
+}
+
+h3 {
+  font-size: var(--fs-big);
+}
+
+@for $i from 1 through 3 {
+  h#{$i} {
+    @include heading-text;
+    @include l.margin(3, 0, 1.5);
+  }
+}
+
+@for $i from 4 through 6 {
+  h#{$i} {
+    @include copy-text;
+    font-weight: font-weight(bold);
+    color: c.$orange;
+    &::after {
+      text-decoration: none;
+      content: " [Don't use H#{$i} tags]";
+    }
+  }
+}
+
+p {
+  @include copy-text;
+  @include l.margin(0.5, 0);
+}
+
+ul {
+  padding-left: l.$spacing-unit;
+}

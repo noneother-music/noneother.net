@@ -1,0 +1,155 @@
+@use './colours' as c;
+@use './layout' as l;
+
+$dt-activate: 0.2s;
+$dt-deactivate: 0.1s;
+
+.navbar {
+
+  z-index: 1;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-grow: 1;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  &__link {
+    position: relative;
+    padding: 0.5rem;
+    border: 2px solid c.$highlight;
+    border-radius: 5px;
+
+    a {
+      color: c.$text;
+    };
+
+    a:hover {
+      color: c.$highlight;
+    }
+
+    // Make entire area clickable
+    a::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@include l.max-screen-width(l.$breakpoint) {
+  .navbar {
+    z-index: -1;
+
+    ul {
+      flex-direction: column;
+      align-items: stretch;
+      justify-items: center;
+      gap: 0;
+
+      position: absolute;
+
+      top: -100%;
+      right: 0;
+
+      width: 100%;
+
+      border-bottom: 2px solid c.$highlight;
+      backdrop-filter: blur(10px);
+
+      transition: all $dt-deactivate ease-in;
+    }
+
+    &.active {
+      ul {
+        top: l.$header-height;
+        transition: all $dt-activate ease-out;
+      }
+    }
+
+    &__link {
+      position:relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      height: 3rem;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+
+      &:hover {
+        background-color: grey;
+      }
+
+      // // Make entire area clickable
+      // a::after {
+      //   content: "";
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 100%;
+      //   // z-index: 1;
+      // }
+    }
+  }
+}
+
+.navbar-toggle {
+  display: none;
+  cursor: pointer;
+
+  z-index: 100;
+
+  width: 3rem;
+  height: 3rem;
+
+  background-color: c.$background;
+  border: 2px solid c.$highlight;
+  border-radius: 5px;
+
+
+  .middle,
+  .outer {
+    filter: drop-shadow(10px 10px 12px rgba(black,0.2));
+  }
+
+  .middle {
+    stroke-dasharray: 250 400;
+    stroke-dashoffset: 0;
+    transition: all $dt-deactivate ease-out;
+  }
+
+  .outer {
+    stroke-dasharray: 250 354;
+    stroke-dashoffset: 0;
+    transition: all $dt-deactivate ease-out;
+  }
+
+  &.active {
+    .middle {
+      stroke-dashoffset: -400;
+      transition: all $dt-activate ease-in;
+    }
+
+    .outer {
+      stroke-dashoffset: -302;
+      transition: all $dt-activate ease-in;
+    }
+  }
+
+  @include l.max-screen-width(l.$breakpoint) {
+    display: block;
+  }
+}

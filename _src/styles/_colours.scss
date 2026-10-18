@@ -1,0 +1,21 @@
+@use 'sass:color' as c;
+
+@forward 'sass:color';
+
+$black: #0c0c0c;
+$cyan: #00ccff;
+$grey: #808080;
+$orange: #ef6155;
+$white: #e8e8e8;
+
+$text: $white;
+$background: $black;
+$highlight: $cyan;
+
+@function ltn($colour, $amt: 10%) {
+  @return c.adjust($colour, $lightness: $amt);
+}
+
+@function dkn($colour, $amt: 30%) {
+  @return c.adjust($colour, $lightness: -$amt);
+}

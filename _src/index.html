@@ -1,0 +1,18 @@
+---
+layout: base.html
+title: Home
+eleventyImport:
+  collections: ['portfolio']
+---
+
+<div class="portfolio-index">
+<ul class="portfolio-index__list">
+  {%- for entry in collections.portfolio | where entry.data.draft == false -%}
+    <li class="portfolio-index__entry">
+      <a href="{{ entry.url }}">
+        <img src="{{ entry.data.image.url }}" alt="{{ entry.data.image.alt }}">
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
+</div>

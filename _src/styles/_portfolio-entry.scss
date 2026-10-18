@@ -1,0 +1,13 @@
+@use './layout' as l;
+
+.portfolio-entry {
+
+  // padding: 1rem;
+  padding: 4*l.$spacing-unit l.$spacing-unit;
+
+  &__content {
+    // display: flex;
+    // flex-direction: column;
+    // gap: clamp(1rem, 10vw, 4rem);
+  }
+}

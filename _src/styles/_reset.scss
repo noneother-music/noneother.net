@@ -1,0 +1,41 @@
+@use 'colours' as c;
+@use 'utilities' as u;
+
+*,
+*::after,
+*::before {
+  margin:  0;
+  padding: 0;
+  border:  0;
+  outline: none;
+  box-sizing: inherit;
+  color: inherit;
+}
+
+:root {
+  box-sizing: border-box;
+  font-size: u.px-per-rem();
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+
+  background-color: c.$background;
+  color: c.$text;
+}
+
+a {
+  text-decoration: none;
+
+  // Chrome does not automatically (?)
+  // change the cursor for links embedded
+  // in SVG elements.
+  cursor: pointer;
+}
+
+ul {
+  list-style-position: inside;
+}

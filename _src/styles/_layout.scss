@@ -1,0 +1,79 @@
+@use 'sass:math';
+@use 'sass:meta';
+
+@use 'utilities' as u;
+
+$spacing-unit:                    1rem;
+
+$grid-column-width:              10rem;
+$grid-column-gap:        $spacing-unit;
+$header-height:                  10rem;
+
+$base-font-size:                1.6rem; // 16px
+$base-line-height:                1.25; // 20px
+
+$modular-scale-ratio:      1.148698355; // pentatonic scale
+
+$breakpoint:                     860px; // small screen <> large screen
+
+@function _ms($step, $base, $ratio: $modular-scale-ratio) {
+  $factor: pow($ratio, abs($step));
+  @return if(sass($step < 0): calc($base / $factor); else: $base * $factor);
+}
+
+@function ms($step, $base: 1, $ratio: $modular-scale-ratio) {
+  $key: '#{$step}:#{$base}';
+  @if (false == u.maphas($_ms_cache, $key)) {
+    $_ms_cache: u.mapset($_ms_cache, $key, _ms($step, $base, $ratio)) !global;
+  }
+  @return u.mapget($_ms_cache, $key);
+}
+$_ms_cache: ();
+
+@function line-height($mult: 1) {
+  @if (meta.type-of($mult) == 'number') {
+    @if math.is-unitless($mult) {
+      @return $mult * $base-line-height * $base-font-size;
+    }
+  }
+  @return $mult;
+}
+
+@mixin line-height($multiplier: 1) {
+  line-height: line-height($multiplier);
+}
+
+@mixin padding($m1, $m2: $m1, $m3: $m1, $m4: $m2) {
+  padding: line-height($m1) line-height($m2) line-height($m3) line-height($m4);
+}
+
+@mixin margin($m1, $m2: $m1, $m3: $m1, $m4: $m2) {
+  margin: line-height($m1) line-height($m2) line-height($m3) line-height($m4);
+  @content;
+}
+
+@mixin center-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @content;
+}
+
+@mixin full-width {
+  position: relative;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  @content;
+}
+
+@mixin min-screen-width($size) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin max-screen-width($size) {
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}

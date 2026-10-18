@@ -1,0 +1,22 @@
+{%- assign media_class = include.class | default: "" | prepend: "media media-image" -%}
+{%- if float == "left" -%}
+  {%- assign media_class = media_class | append: " float-left" -%}
+{%- elsif float == "right" -%}
+  {%- assign media_class = media_class | append: " float-right" -%}
+{%- endif -%}
+
+{%- assign image_location = uri -%}
+{%- assign link_location = link_to | default: image_location -%}
+{%- assign alternate_text = alt -%}
+
+<div class="{{ media_class }}">
+  {%- capture image_tag -%}<img src="{{ image_location }}" alt="{{ alternate_text }}">{%- endcapture -%}
+  {%- if clickable == true -%}
+  {%- capture image_tag -%}poot{%- endcapture -%}
+  <a href="{{ link_location }}" target="_blank" rel="noopener noreferrer">
+    {{ image_tag }}
+  </a>
+  {%- else -%}
+    {{ image_tag }}
+  {%- endif -%}
+</div>
