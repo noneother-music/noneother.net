@@ -1,0 +1,9 @@
+{%- case type -%}
+  {%- when "image" -%}
+    {%- render "media/image.html", url: url, alt: alt, link_to: link_to -%}
+  {% when "youtube-embed" %}
+    {%- render "media/youtube-embed.html", video_id: video_id -%}
+{%- endcase %}
+
+<!-- ^ empty line stops markdown parsing from breaking -->
+<!-- when include/render tag is closed with `-%}`      -->

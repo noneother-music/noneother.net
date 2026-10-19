@@ -8,11 +8,12 @@ image:
   alt: The Tristris title screen
 ---
 
-{%
-  include "media/image.html",
-  uri: image.url,
+{%-
+  include "media/media.html",
+  type: "image",
+  url: image.url,
   alt: image.alt
-%}
+-%}
 
 A Tetris clone written in JavaScript + WebGL &mdash; currently runs best in Firefox 157 or newer (see known issues below)! If you want to try it out, check the controls below then click <a href="/tristris" target="_blank">here!</a>
 
