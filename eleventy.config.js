@@ -1,17 +1,37 @@
+import fs from 'node:fs'
 import path from 'node:path'
 import * as sass from 'sass'
 
+const isProductionBuild = process.env.NODE_ENV === 'production'
+
 async function compileSass(inputContent, inputPath) {
   const parsedPath = path.parse(inputPath)
+
   if (parsedPath.name.startsWith('_')) { return }
+
   const result = sass.compileString(inputContent, {
-    loadPaths: [
-      parsedPath.dir || '.',
-      this.config.dir.includes,
-    ]
+    loadPaths: [parsedPath.dir || '.', this.config.dir.includes ],
+    sourceMap: !isProductionBuild,
+    sourceMapIncludeSources: !isProductionBuild,
+    style: isProductionBuild ? 'compressed' : 'expanded',
   })
+
   this.addDependencies(inputPath, result.loadedUrls)
-  return async () => result.css
+
+  const outputDir = path.join(this.config.dir.output, parsedPath.dir.replace(this.config.dir.input, ''))
+  const mapPath = path.join(outputDir, parsedPath.name + '.css.map')
+
+  return async (data) => {
+    let css = result.css
+
+    if (!isProductionBuild && result.sourceMap) {
+      fs.mkdirSync(outputDir, { recursive: true })
+      fs.writeFileSync(mapPath, JSON.stringify(result.sourceMap))
+      css = result.css + "\n/*# sourceMappingURL=" + parsedPath.name + ".css.map */";
+    }
+
+    return css
+  }
 }
 
 export default function (config)
@@ -19,7 +39,7 @@ export default function (config)
   config.addExtension('scss', {
     outputFileExtension: 'css',
     useLayouts: false,
-    compile: compileSass
+    compile: compileSass,
   })
 
   config.addPassthroughCopy('_src/favicon.svg')
