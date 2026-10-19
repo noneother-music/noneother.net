@@ -3,8 +3,17 @@
 .media {
   display: flex;
   justify-content: center;
+  align-items: center;
+  max-width:50rem;
 
-  @include l.margin(1, 0, 2);
+  @include l.margin(1, auto, 2, auto);
+}
+
+.media-image {
+  img {
+    width: 100%;
+    max-width: 50rem;
+  }
 }
 
 .media-youtube {

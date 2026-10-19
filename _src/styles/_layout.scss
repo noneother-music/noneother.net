@@ -44,10 +44,17 @@ $_ms_cache: ();
 }
 
 @mixin padding($m1, $m2: $m1, $m3: $m1, $m4: $m2) {
-  padding: line-height($m1) line-height($m2) line-height($m3) line-height($m4);
+
+  padding:
+    if($m1 == auto, $m1, line-height($m1))
+    if($m2 == auto, $m2, line-height($m2))
+    if($m3 == auto, $m3, line-height($m3))
+    if($m4 == auto, $m4, line-height($m4))
+  ;
 }
 
 @mixin margin($m1, $m2: $m1, $m3: $m1, $m4: $m2) {
+
   margin: line-height($m1) line-height($m2) line-height($m3) line-height($m4);
   @content;
 }
