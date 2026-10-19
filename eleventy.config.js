@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import * as sass from 'sass'
+import htmlmin from 'html-minifier-terser'
 
 const isProductionBuild = process.env.NODE_ENV === 'production'
 
@@ -34,12 +35,21 @@ async function compileSass(inputContent, inputPath) {
   }
 }
 
-export default function (config)
-{
+export default function (config) {
   config.addExtension('scss', {
     outputFileExtension: 'css',
     useLayouts: false,
     compile: compileSass,
+  })
+
+  config.addTransform('htmlmin', function (content) {
+    if ((this.page.outputPath || '').endsWith('.html')) {
+      return htmlmin.minify(content, {
+        collapseWhitespace: true,
+        removeComments: true,
+      })
+    }
+    return content
   })
 
   config.addPassthroughCopy('_src/favicon.svg')
