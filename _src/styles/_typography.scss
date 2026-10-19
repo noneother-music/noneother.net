@@ -82,7 +82,7 @@
 
   --lh1:        #{ l.line-height(1)     };
   --lh2:        #{ l.line-height(1.125) };
-  --lh3:        #{ l.line-height(1.5)   };
+  --lh3:        #{ l.line-height(1.2)  };
   --lh4:        #{ l.line-height(2)     };
   --lh5:        #{ l.line-height(2)     };
   --lh6:        #{ l.line-height(2)     };
@@ -147,7 +147,7 @@ h3 {
 
 p {
   @include copy-text;
-  @include l.margin(0.5, 0);
+  @include l.margin(0.5, 0, 1);
 }
 
 ul {
