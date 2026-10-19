@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf --glob ./_dst/*",
+    "clean": "rimraf --glob ./_site/*",
     "build": "npx eleventy",
     "start": "npx eleventy --serve"
   },

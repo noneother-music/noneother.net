@@ -39,7 +39,7 @@ export default function (config)
   return {
     dir: {
       input: '_src',
-      output: '_dst',
+      output: '_site',
       includes: '_includes',
       layouts: '_layouts'
     },
