@@ -2,7 +2,7 @@
 title: Tristris
 date: 2017-07-01
 tags: portfolio
-fileSlug: slash
+fileSlug: tristris
 image:
   url: /assets/images/portfolio/tristris/tristris.png
   alt: The Tristris title screen
