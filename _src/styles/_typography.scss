@@ -80,12 +80,12 @@
   --fs-bigger:  #{ font-size(bigger)  };
   --fs-biggest: #{ font-size(biggest) };
 
-  --lh1:        #{ line-height(1)     };
-  --lh2:        #{ line-height(1.125) };
-  --lh3:        #{ line-height(1.5)   };
-  --lh4:        #{ line-height(2)     };
-  --lh5:        #{ line-height(2)     };
-  --lh6:        #{ line-height(2)     };
+  --lh1:        #{ l.line-height(1)     };
+  --lh2:        #{ l.line-height(1.125) };
+  --lh3:        #{ l.line-height(1.5)   };
+  --lh4:        #{ l.line-height(2)     };
+  --lh5:        #{ l.line-height(2)     };
+  --lh6:        #{ l.line-height(2)     };
 
   --lh-tiny:    var(--lh1);
   --lh-small:   var(--lh2);
