@@ -1,4 +1,6 @@
 {%- case type -%}
+  {%- when "figure" -%}
+    {%- render "media/figure.html", url: url, alt: alt, caption: caption, link_to: link_to -%}
   {%- when "image" -%}
     {%- render "media/image.html", url: url, alt: alt, link_to: link_to -%}
   {% when "youtube-embed" %}

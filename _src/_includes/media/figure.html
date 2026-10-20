@@ -1,0 +1,23 @@
+{%- assign media_class = "media media-image" -%}
+{%- if float == "left" -%}
+  {%- assign media_class = media_class | append: " float-left" -%}
+{%- elsif float == "right" -%}
+  {%- assign media_class = media_class | append: " float-right" -%}
+{%- endif -%}
+
+{%- assign image_location = url -%}
+{%- assign link_location = link_to | default: image_location -%}
+{%- assign alternate_text = alt -%}
+{%- assign image_caption = caption -%}
+
+<div class="{{ media_class }}">
+  {%- capture image_tag -%}<img src="{{ image_location }}" alt="{{ alternate_text }}">{%- endcapture -%}
+  <figure>
+    {%- if clickable == true -%}
+      <a href="{{ link_location }}" target="_blank" rel="noopener noreferrer">{{ image_tag }}</a>
+    {%- else -%}
+      {{ image_tag }}
+    {%- endif -%}
+    <figcaption>{{ image_caption }}</figcaption>
+  </figure>
+</div>
