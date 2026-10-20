@@ -47,6 +47,7 @@ export default function (config) {
       return htmlmin.minify(content, {
         collapseWhitespace: true,
         removeComments: true,
+        removeEmptyElements: true,
       })
     }
     return content
@@ -63,7 +64,7 @@ export default function (config) {
   config.addCollection('portfolio', async collection => {
     return collection.getFilteredByGlob('./_src/portfolio/*')
       .filter(entry => !entry.data.draft)
-      .sort((a, b) => b.date - a.date) // reverse chornologic order
+      .sort((a, b) => b.date - a.date) // reverse chronologic order
   })
 
   return {
