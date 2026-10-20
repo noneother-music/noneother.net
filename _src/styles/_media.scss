@@ -6,7 +6,7 @@
   align-items: center;
   max-width:50rem;
 
-  @include l.margin(1, auto, 2, auto);
+  @include l.margin(3, auto);
 }
 
 .media-image {
