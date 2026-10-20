@@ -47,7 +47,6 @@ export default function (config) {
       return htmlmin.minify(content, {
         collapseWhitespace: true,
         removeComments: true,
-        removeEmptyElements: true,
       })
     }
     return content
