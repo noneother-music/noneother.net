@@ -1,5 +1,5 @@
 ---
-title: Slash
+title: Procedural landscape material
 date: 2026-08-30
 tags: portfolio
 fileSlug: landscape-material
